@@ -1,0 +1,104 @@
+﻿@page
+@model Final.Pages.Transaction_Page.TransactionModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Checkout</title>
+    <style>
+        /* Add some margin or padding to create space between input bars */
+        .form-group label,
+        .form-group input {
+            margin-bottom: 10px; /* You can adjust this value as needed */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-success">Checkout</h1>
+            </div>
+        </div>
+
+        <form method="post">
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @if (Model.Customer.Phone != null)
+                        {
+                                    <label asp-for="Customer.Phone" class="control-label"></label>
+                                    <input asp-for="Customer.Phone" class="form-control" readonly>
+
+                        }
+                        else
+                        {
+                                    <label asp-for="Customer.Phone" class="control-label"></label>
+                                    <input asp-for="Customer.Phone" class="form-control">
+
+                        }
+
+                        @if (Model.Customer != null && Model.Customer.Phone != null)
+                        {
+                            if (@Model.Customer.fullName != null && @Model.Customer.Address != null)
+                            {
+                                                <label for="customerName">Customer Name:</label>
+                                                <input asp-for="Customer.fullName" class="form-control" type="text" id="customerName" name="customerName" value="@Model.Customer.fullName" readonly>
+
+
+                                                <label for="customerAddress">Customer Address:</label>
+                                                <input asp-for="Customer.Address" class="form-control" type="text" id="customerAddress" name="customerAddress" value="@Model.Customer.Address" readonly>
+
+                            }
+                            else
+                            {
+
+
+                                                <label asp-for="Customer.fullName" class="control-label"></label>
+                                               <input asp-for="Customer.fullName" class="form-control">
+
+                                                        <label asp-for="Customer.Address" class="control-label"></label>
+                                                               <input asp-for="Customer.Address" class="form-control">
+
+                            }
+                        }
+
+                        @if (@Model.Customer.Phone != null && @Model.Customer.fullName != null && @Model.Customer.Address != null)
+                        {
+                                    <label for="totalPrice">Total Price:</label>
+                                    <input asp-for="Order.ToltalPayment" class="form-control" type="text" value="@Model.SumTotalPrices()" readonly>
+                                    <span asp-validation-for="Order.ToltalPayment" class="text-danger"></span>
+
+                                    <label for="moneyGiven">Money Given:</label>
+                                    <input asp-for="Order.MoneyGiven" class="form-control">
+                                    <span asp-validation-for="Order.MoneyGiven" class="text-danger"></span>
+
+                                    <label for="exchange">Exchange:</label>
+                                    <input asp-for="Order.MoneyExchange" class="form-control" readonly type="text" value="@Model.Order.MoneyExchange" >
+                                    <span asp-validation-for="Order.MoneyExchange" class="text-danger"></span>
+                        }
+
+                        <!-- Additional Input Bars -->
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Buttons Section -->
+            <div class="row mt-4">
+                <div class="col-6">
+                    <!-- Return to Index Button -->
+                    <a asp-page="/Transaction_Page/Index" class="btn btn-primary">Back to Customer</a>
+                </div>
+
+                <div class="col-6 text-end">
+                    <!-- Checkout Button -->
+                    <button class="btn btn-primary" type="submit">Next</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

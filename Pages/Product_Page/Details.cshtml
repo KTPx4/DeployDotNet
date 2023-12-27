@@ -1,0 +1,82 @@
+﻿@page
+@model Final.Pages.Product_Page.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<h1>Details Products</h1>
+<hr />
+
+<div class="container">
+    <div class="col-md-12 text-center mb-4">
+        <div class="image-container">
+            <img src="@Model.Product.linkImg" class="img-fluid rounded" alt="Product Image" style="width: 300px; height: 200px;">
+        </div>
+    </div>
+
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Product.BarCode)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Product.BarCode)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Product.ProductName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Product.ProductName)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Product.OriginPrice)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Product.OriginPrice)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Product.DisplayPrice)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Product.DisplayPrice)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Product.Category)
+        </dt>
+          <dd class="col-sm-10">
+            @String.Join(", ", Model.Product.Category)
+        </dd>
+
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Product.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Product.Description)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Product.linkImg)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Product.linkImg)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Product.CreateAt)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Product.CreateAt)
+        </dd>
+    </dl>
+</div>
+
+<div>
+  <a asp-page="./Index" class="btn btn-secondary">Back to List</a>
+
+</div>
